@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>The clock</title>
+</head>
+<body>
+    <section class="content">
+        <h1 class="hidden">The clock</h1>
+
+        
+        <div class="clock">
+            <p>
+                <span id="uur" class="clock__hours">00</span>
+                <span>:</span>
+                <span id="minuten" class="clock__minutes">00</span>
+                <span>:</span>
+                <span id="seconde" class="clock__seconds">00</span>
+            </p>
+        </div>
+    </section>
+    <script>
+        var date = new Date("00");
+        var second = document.querySelector("#seconde");
+        var minuten = document.querySelector("#minuten");
+        var uur = document.querySelector("#uur");
+        
+        
+        second.innerHTML = date.getSeconds();
+        minuten.innerHTML = date.getMinutes();
+        uur.innerHTML = date.getHours();
+       
+
+        
+        setInterval(function() {
+                var second = document.querySelector("#seconde");
+                var minuten = document.querySelector("#minuten");
+                var uur = document.querySelector("#uur");
+                 var seconden = second.innerHTML;
+                 var minuut = minuten.innerHTML;
+                 var uren = uur.innerHTML;
+                
+                 seconden++;
+                 if (seconden > 60){
+                    seconden = 0;
+                    minuut++;
+                
+                    if (minuut > 60){
+                     minuut = 0;
+                     uren++;
+                    };
+                 };
+                 second.innerHTML = seconden;
+                 minuten.innerHTML = minuut;
+                 uur.innerHTML = uren;
+          }, 1000)
+
+
+        
+    </script>
+
+    
+</body>
+</html>

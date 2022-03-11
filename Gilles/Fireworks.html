@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Count down</title>
+        <style>
+            body { 
+                margin: 0px;
+                height: 100%;
+                background-position: center center;
+                background-repeat:no-repeat ;
+            }
+            #container {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-size: cover;
+                display: "";
+                
+            }
+            #counter {
+                width: 200px;
+                height: 200px;
+                font-size: 200px;
+                line-height: 200px;
+                text-align: center;
+                border: 2px solid black;
+                border-radius: 100px;
+                background-color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div id="container">
+            <div id="counter">5</div>
+        </div>
+    </body>
+    <script>
+        var body = document.querySelector("body");
+        var container = document.querySelector("#container");
+        var counter = document.querySelector("#counter");
+
+        var teller = 5;
+        setInterval(function() {
+             teller--;
+            
+             counter.innerHTML = teller;
+                if(teller <= 0){
+                  body.style.backgroundImage = 'url("firework.jpg")';
+                  container.style.display = 'none';
+                  
+                };
+         }, 1000)
+    </script>
+</html>
