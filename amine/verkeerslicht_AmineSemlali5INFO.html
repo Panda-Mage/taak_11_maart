@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <title>Verkeerslicht</title>
+    <style>
+        body {
+            background-color: rgb(36, 36, 36);
+        }
+        
+        .container {
+            width: 140px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #container {
+            height: 380px;
+            padding: 20px;
+            border-radius: 50px;
+            margin-top: 100px;
+            background-color: black;
+        }
+        
+        #button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .light {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            border-radius: 50px;
+            background-color: #808080;
+        }
+        
+        button {
+            background-color: black;
+            color: white;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+        
+        #test {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <div class="light" id="red"></div>
+        <div class="light" id="orange"></div>
+        <div class="light" id="green"></div>
+    </div>
+    <div id="button-container" class="container">
+    </div>
+    <script>
+        let redlight = document.querySelector("#red");
+        let orangelight = document.querySelector("#orange");
+        let greenlight = document.querySelector("#green");
+        let toestandlicht = 0;
+
+        window.onload = function() {
+            setInterval(time, 1000);
+        }
+
+        function time() {
+            toestandlicht++
+            toestandlicht += 0;
+            if (toestandlicht == 3) {
+                toestandlicht = 0;
+            }
+            console.log(toestandlicht)
+            if (toestandlicht == 1) {
+                redlight.style.backgroundColor = "#808080";
+                orangelight.style.backgroundColor = "#808080";
+                greenlight.style.backgroundColor = "#00ff56";
+            }
+            if (toestandlicht == 2) {
+                redlight.style.backgroundColor = "#808080";
+                orangelight.style.backgroundColor = "#ff9900";
+                greenlight.style.backgroundColor = "#808080";
+            }
+            if (toestandlicht == 0) {
+                redlight.style.backgroundColor = "#ff003c";
+                orangelight.style.backgroundColor = "#808080";
+                greenlight.style.backgroundColor = "#808080";
+            }
+        }
+    </script>
+</body>
+
+</html>
