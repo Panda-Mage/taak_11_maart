@@ -1,0 +1,192 @@
+<html>
+    <head>
+        <title>Snake</title>
+        <style>
+            #container {
+                width: 500px;
+                height: 500px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 0;
+                background-color: lightgreen;
+                position: relative;
+            }
+            #snake {
+                width: 5px;
+                height: 5px;
+                background-color: darkgreen;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            #apple {
+                width: 5px;
+                height: 5px;
+                background-color: darkred;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            #buttons {
+                width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                margin-top: 20px;
+            }
+            .center-text-here{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="pause">PAUSE</button>
+        <h1 id="score" class="center-text-here"></h1>
+        <div id="container">
+            <div id="snake"></div>
+            <div id="apple"></div>
+        </div>
+        <div id="buttons">
+            <button id="go-left">Left</button>
+            <button id="go-right">Right</button>
+        </div>
+        <br>
+        <h1 class="center-text-here">OR</h1>
+        <h1 class="center-text-here">ARROW KEYS</h1>
+    </body>
+    <script>
+        let direction = 1;
+        let speed = 100;
+        let score = -1;
+        let x = 0;
+        let y = 0;
+        let xapple = 0;
+        let yapple = 0;
+        let pausetime = 0;
+
+        let links = document.querySelector("#go-left");
+        let rechts = document.querySelector("#go-right");
+        let veld = document.querySelector("#container");
+        let snake = document.querySelector("#snake");
+        let apple = document.querySelector("#apple");
+        let pause = document.querySelector("#pause");
+        let scorefield = document.querySelector("#score");
+
+        links.addEventListener("click", fulinks);
+        rechts.addEventListener("click", furechts);
+        pause.addEventListener("click", fupause);
+
+        function furechts(){
+            direction= direction - 1;
+            if(direction == -1){
+                direction = 3
+            }
+        }
+
+        function fulinks(){
+            direction= direction + 1;
+            if(direction == 4){
+                direction = 0
+            }
+        }
+
+        function move(){
+            if(xapple == x && yapple == y){
+                score++;
+                xapple = (Math.floor(Math.random()*100))*5;
+                yapple = (Math.floor(Math.random()*100))*5;
+                apple.style.left=xapple;
+                apple.style.top=yapple;
+                scorefield.innerHTML=score;
+            }
+            if(direction == 0){
+                y=y+5;
+            }
+            if(direction == 1){
+                x=x+5;
+            }
+            if(direction == 2){
+                y=y-5;
+            }
+            if(direction == 3){
+                x=x-5;
+            }
+            if(x<0 || x>495 || y>495 || y<0){
+                console.log(x);
+                console.log(y);
+                alert("GAME OVER");
+            }
+            else{
+                if(direction == 1 || direction == 3){
+                    snake.style.left = x;
+                }
+                else{
+                    snake.style.top = y;
+                }
+            }
+        }
+
+        function start(){
+            clocker = setInterval(move, speed);
+        }
+
+        document.onkeydown = checkKey;
+
+        function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '40') {
+                // up arrow
+                if(direction == 1){
+                    direction = 0
+                }
+                if(direction == 3){
+                    direction = 0
+                }
+
+            }
+            else if (e.keyCode == '38') {
+                // down arrow
+                if(direction == 1){
+                    direction = 2
+                }
+                if(direction == 3){
+                    direction = 2
+                }
+
+            }
+            else if (e.keyCode == '37') {
+            // left arrow
+                if(direction == 0){
+                    direction=3;
+                }
+                if(direction == 2){
+                    direction =3;
+                }
+            }
+            else if (e.keyCode == '39') {
+            // right arrow
+                if(direction == 0){
+                    direction = 1
+                }
+                if(direction == 2){
+                    direction = 1
+                }
+            }
+        }
+
+        function fupause(){
+            if(pausetime==0){
+                clearInterval(clocker);
+                pausetime = 1;
+            }
+            else{if(pausetime == 1){
+                clocker = setInterval(move, speed);
+                pausetime = 0;
+            }}
+        }
+
+        start();
+    </script>
+</html>

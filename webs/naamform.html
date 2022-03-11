@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="Naam" name="VoorNaam" placeholder="VoorNaam">
+        <input type="text" id="VoorNaam" name="Naam" placeholder="Naam">
+        <input type="submit" id="knopske" value="gebruik deze naam">
+    </div>
+    <h1 id="tekst" style="color: hotpink;"></h1>
+</body>
+<script>
+    let Naam = document.querySelector("#Naam");
+    let VoorNaam = document.querySelector("#VoorNaam");
+    let knopske = document.querySelector("#knopske")
+    let tekst = document.querySelector("#tekst")
+
+    knopske.addEventListener("click", fuknopske);
+
+    function fuknopske(){
+        tekst.innerHTML= "HALLO "+Naam.value+" "+VoorNaam.value;
+    }
+</script>
+</html>
