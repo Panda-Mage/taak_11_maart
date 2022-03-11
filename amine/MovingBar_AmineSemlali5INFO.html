@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <title>Count down</title>
+    <style>
+        body {
+            margin: 0px;
+            height: 100%;
+            background-color: rgb(44, 44, 44);
+        }
+        
+        #container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+        }
+        
+        #bar {
+            width: 1000px;
+            height: 50px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 20px;
+        }
+        
+        #slider {
+            width: 200px;
+            height: 100%;
+            background-color: rgb(255, 0, 64);
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="bar">
+            <div id="slider"></div>
+        </div>
+    </div>
+    <script>
+        let slider = document.querySelector("#slider");
+        let bar = document.querySelector("#bar");
+        let toestand = 0;
+
+        window.onload = function() {
+            setInterval(time, 100);
+        }
+
+        function time() {
+            toestand++
+            if (toestand == 31) {
+                toestand = 0;
+            }
+
+            if (toestand < 17) {
+                slider.style.marginLeft = (50 * toestand) + "px";
+            } else {
+                slider.style.marginLeft = (750 - 50 * (toestand - 17)) + "px";
+            }
+        }
+    </script>
+</body>
+
+</html>
